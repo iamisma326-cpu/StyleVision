@@ -1,0 +1,18 @@
+/* Mixin para botones */
+@mixin boton-estilo($color-fondo-boton, $color-texto-boton) {
+    display: inline-block;
+    background-color: $color-fondo-boton;
+    color: $color-texto-boton;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken($color-fondo-boton, 10%);
+        transform: translateY(-2px);
+    }
+}
