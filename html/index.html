@@ -99,7 +99,19 @@
                 <h2 class="generador__titulo-lujo">Crea tu Outfit Ideal</h2>
                 <p class="generador__texto-lujo">Selecciona tus preferencias y deja que nuestra Inteligencia Artificial diseñe tu propuesta exclusiva.</p>
 
-                <form id="formulario-ia" class="formulario-ia-lujo">
+                              <form id="formulario-ia" class="formulario-ia-lujo">
+                    <!-- Género -->
+                    <div class="grupo-formulario-lujo">
+                        <label for="genero" class="etiqueta-lujo">Género</label>
+                        <select id="genero" class="campo-entrada-lujo" required>
+                            <option value="">Seleccione...</option>
+                            <option value="mujer">Mujer</option>
+                            <option value="hombre">Hombre</option>
+                            <option value="unisex">Unisex</option>
+                        </select>
+                    </div>
+
+                    <!-- Tipo de evento -->
                     <div class="grupo-formulario-lujo">
                         <label for="evento" class="etiqueta-lujo">Tipo de evento</label>
                         <select id="evento" class="campo-entrada-lujo" required>
@@ -111,6 +123,7 @@
                         </select>
                     </div>
 
+                    <!-- Estilo -->
                     <div class="grupo-formulario-lujo">
                         <label for="estilo" class="etiqueta-lujo">Estilo deseado</label>
                         <select id="estilo" class="campo-entrada-lujo" required>
@@ -122,17 +135,27 @@
                         </select>
                     </div>
 
+                    <!-- Temporada -->
+                    <div class="grupo-formulario-lujo">
+                        <label for="temporada" class="etiqueta-lujo">Temporada / Clima</label>
+                        <select id="temporada" class="campo-entrada-lujo" required>
+                            <option value="">Seleccione...</option>
+                            <option value="verano">Verano / Caluroso</option>
+                            <option value="invierno">Invierno / Frío</option>
+                            <option value="primavera">Primavera</option>
+                            <option value="otono">Otoño</option>
+                            <option value="interior">Interior / Formal</option>
+                        </select>
+                    </div>
+
+                    <!-- Colores -->
                     <div class="grupo-formulario-lujo">
                         <label for="color" class="etiqueta-lujo">Colores favoritos</label>
                         <input type="text" id="color" class="campo-entrada-lujo" placeholder="Ej. Tonos neutros, negro y dorado..." required>
                     </div>
 
-                    <div class="grupo-formulario-lujo">
-                        <label for="prenda" class="etiqueta-lujo">Subir prenda base (Opcional)</label>
-                        <input type="file" id="prenda" class="campo-archivo-lujo" accept="image/*">
-                    </div>
-
-                    <button type="submit" class="boton-generar-lujo">Generar Propuesta</button>   </form>
+                    <button type="submit" class="boton-generar-lujo">Generar Propuesta con IA</button>
+                </form>
 
                 <div id="resultado-ia" class="resultado-ia-lujo oculto"></div>
             </div>

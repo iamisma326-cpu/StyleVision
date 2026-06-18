@@ -1,91 +1,132 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. Cambiar el color del Menú (Nav) al hacer scroll
-    const nav = document.getElementById('nav-principal');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            nav.classList.remove('encabezado--transparente');
-            nav.classList.add('encabezado--blanco');
-        } else {
-            nav.classList.add('encabezado--transparente');
-            nav.classList.remove('encabezado--blanco');
-        }
-    });
 
-    // 2. Intersección para animar elementos cuando aparecen en pantalla (Efecto Escala Gucci)
+    console.log("✅ JavaScript completo cargado - Todo restaurado");
+
+    // ======================== 1. NAVEGACIÓN (Scroll) ========================
+    const nav = document.getElementById('nav-principal');
+    if (nav) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.remove('encabezado--transparente');
+                nav.classList.add('encabezado--blanco');
+            } else {
+                nav.classList.add('encabezado--transparente');
+                nav.classList.remove('encabezado--blanco');
+            }
+        });
+    }
+
+    // ======================== 2. ANIMACIONES DE CATEGORÍAS (Zoom) ========================
     const opcionesObservador = {
         root: null,
-        threshold: 0.3 // Se activa cuando el 30% del elemento es visible
+        threshold: 0.3,
+        rootMargin: "0px 0px -50px 0px"
     };
 
-    // Animación de reducción (zoom in a normal) para categorías
     const elementosAnimables = document.querySelectorAll('.animacion-scroll');
     const observadorElementos = new IntersectionObserver((entradas) => {
         entradas.forEach(entrada => {
             if (entrada.isIntersecting) {
-                // Aplica un transform scale para simular la reducción que pediste
-                entrada.target.style.transform = 'scale(0.9)';
-            } else {
-                // Vuelve a su tamaño original si sale de la pantalla
-                entrada.target.style.transform = 'scale(1)';
+                entrada.target.classList.add('visible');
             }
         });
     }, opcionesObservador);
 
     elementosAnimables.forEach(el => observadorElementos.observe(el));
 
-    // 3. Invertir colores de la sección Newsletter (Blanco a Negro)
+    // ======================== 3. NEWSLETTER (Blanco → Negro) ========================
     const seccionNewsletter = document.getElementById('newsletter');
-    const observadorNewsletter = new IntersectionObserver((entradas) => {
-        entradas.forEach(entrada => {
-            if (entrada.isIntersecting) {
-                seccionNewsletter.classList.add('fondo-negro');
-            } else {
-                seccionNewsletter.classList.remove('fondo-negro');
-            }
-        });
-    }, { threshold: 0.5 }); // Se activa cuando el 50% de la sección es visible
-
     if (seccionNewsletter) {
+        const observadorNewsletter = new IntersectionObserver((entradas) => {
+            entradas.forEach(entrada => {
+                if (entrada.isIntersecting) {
+                    seccionNewsletter.classList.add('fondo-negro');
+                } else {
+                    seccionNewsletter.classList.remove('fondo-negro');
+                }
+            });
+        }, { threshold: 0.5 });
+
         observadorNewsletter.observe(seccionNewsletter);
     }
-});
 
-
-// --- LÓGICA DEL GENERADOR DE OUTFITS IA ---
-document.addEventListener('DOMContentLoaded', () => {
-    
+    // ======================== 4. GENERADOR IA (Optimizado + Respaldo) ========================
     const formularioIA = document.getElementById('formulario-ia');
     const contenedorResultado = document.getElementById('resultado-ia');
 
-    if (formularioIA) {
-        formularioIA.addEventListener('submit', function(eventoSubmit) {
-            // 1. Prevenir que la página se recargue al enviar el formulario
-            eventoSubmit.preventDefault();
+    if (formularioIA && contenedorResultado) {
+        formularioIA.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-            // 2. Capturar los datos ingresados por el usuario
+            const genero = document.getElementById('genero').value;
             const tipoEvento = document.getElementById('evento').value;
             const tipoEstilo = document.getElementById('estilo').value;
+            const temporada = document.getElementById('temporada').value;
             const coloresFavoritos = document.getElementById('color').value;
 
-            // 3. Mostrar estado de "Cargando" simulando a la IA
             contenedorResultado.classList.remove('oculto');
             contenedorResultado.innerHTML = `
-                <h3 style="font-size: 18px; text-transform: uppercase; margin-bottom: 15px;">Generando propuesta exclusiva...</h3>
-                <p style="font-size: 14px; color: #555;">Analizando evento: <strong>${tipoEvento}</strong> | Estilo: <strong>${tipoEstilo}</strong> | Colores: <strong>${coloresFavoritos}</strong></p>
-                <div style="margin: 30px auto; width: 40px; height: 40px; border: 3px solid #eee; border-top: 3px solid black; border-radius: 50%; animation: giro-ia 1s linear infinite;"></div>
-                <style>@keyframes giro-ia { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+                <div style="text-align: center; padding: 50px 20px;">
+                    <h3>Generando Outfit con IA...</h3>
+                    <div style="margin:25px auto; width:60px; height:60px; border:6px solid #eee; border-top:6px solid #000; border-radius:50%; animation: spin 1s linear infinite;"></div>
+                    <p>Usando Pollinations AI (Flux) • 10-25 segundos</p>
+                    
+                    <button onclick="usarModoRespaldo()" 
+                            style="margin-top: 25px; background:#333; color:white; padding:12px 28px; border:none; border-radius:6px; cursor:pointer;">
+                        Usar Modo Respaldo (Instantáneo)
+                    </button>
+                </div>
             `;
 
-            // 4. Simular el tiempo de procesamiento de la Inteligencia Artificial (3 segundos)
-            setTimeout(() => {
-                contenedorResultado.innerHTML = `
-                    <h3 style="font-size: 20px; text-transform: uppercase; margin-bottom: 20px;">Tu Propuesta StyleVision está lista</h3>
-                    <img src="../assets/img/outfit-resultado.jpg" alt="Outfit Generado" style="width: 100%; max-width: 400px; height: auto; object-fit: cover; margin-bottom: 25px;">
-                    <br>
-                    <a href="../assets/img/outfit-resultado.jpg" download="StyleVision-Outfit.jpg" class="boton-lujo boton-lujo--oscuro" style="display: inline-block;">Descargar Imagen</a>
-                `;
-            }, 3000);
+            const promptIA = `Single person only, full body fashion editorial, ${genero === 'hombre' ? 'handsome young man, masculine features, short hair' : genero === 'mujer' ? 'beautiful young woman, feminine features, long hair' : 'young person'}, wearing luxury ${tipoEstilo} outfit for ${tipoEvento} during ${temporada}, main colors ${coloresFavoritos}, elegant pose, vogue magazine style, photorealistic, sharp details, single model centered`;
+
+            try {
+                const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(promptIA)}?width=512&height=640&nologo=true&enhance=false&seed=${Date.now()}`;
+
+                const response = await fetch(url);
+                
+                if (response.ok) {
+                    contenedorResultado.innerHTML = `
+                        <h3 style="margin: 20px 0;">¡Outfit Generado con IA!</h3>
+                        <img src="${url}" style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" alt="Outfit IA" />
+                        <br><br>
+                        <a href="${url}" download="StyleVision-Outfit.jpg" style="background:#000; color:white; padding:15px 35px; text-decoration:none; border-radius:6px; display:inline-block;">
+                            Descargar Imagen
+                        </a>
+                        <button onclick="location.reload()" style="background:#333; color:white; padding:15px 35px; border:none; border-radius:6px; margin-left:10px;">
+                            Generar Otro
+                        </button>
+                    `;
+                } else {
+                    throw new Error("Error");
+                }
+            } catch (error) {
+                console.error(error);
+                usarModoRespaldo();
+            }
         });
     }
 });
+
+// ==================== FUNCIÓN DE RESPALDO ====================
+window.usarModoRespaldo = function() {
+    const contenedorResultado = document.getElementById('resultado-ia');
+    const genero = document.getElementById('genero').value || "persona";
+    const tipoEstilo = document.getElementById('estilo').value || "elegante";
+    const temporada = document.getElementById('temporada').value || "general";
+    const colores = document.getElementById('color').value || "";
+
+    contenedorResultado.innerHTML = `
+        <h3 style="margin: 25px 0;">Propuesta (Modo Respaldo)</h3>
+        <p style="color:#555;">${genero} • ${tipoEstilo} • ${temporada}</p>
+        <img src="../assets/img/outfit-resultado.jpg" style="max-width:100%; border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,0.15);"/>
+        <br><br>
+        <a href="../assets/img/outfit-resultado.jpg" download="outfit-respaldo.jpg" style="background:#000;color:white;padding:15px 35px;text-decoration:none;border-radius:6px;">Descargar Respaldo</a>
+        <button onclick="location.reload()" style="background:#333;color:white;padding:15px 35px;border:none;border-radius:6px;margin-left:10px;">Intentar IA</button>
+    `;
+};
+
+// Animación spinner
+const style = document.createElement('style');
+style.innerHTML = `@keyframes spin {0% {transform:rotate(0deg);} 100%{transform:rotate(360deg);}}`;
+document.head.appendChild(style);

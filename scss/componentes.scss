@@ -228,4 +228,48 @@ h1, h2, h3 { font-family: $fuente-titulos; font-weight: 400; letter-spacing: 2px
     padding-top: 30px;
     border-top: 1px solid #EEE;
 }
-.oculto { display: none; }
+.oculto { display: none; 
+
+    /* ======================== MEJORAS GENERADOR IA ======================== */
+
+/* Pantalla de Carga Mejorada */
+.carga-ia {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.ia-loader {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #f0f0f0;
+    border-top: 4px solid #1A1A1A;
+    border-radius: 50%;
+    animation: spin 1.2s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Mejorar el contenedor de resultado */
+.resultado-ia-lujo {
+    margin-top: 40px;
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid #EEE;
+    background-color: #FAFAFA;
+    border-radius: 8px;
+}
+
+/* Botones en el resultado */
+.resultado-ia-lujo .boton-generar-lujo {
+    margin: 10px 5px;
+    padding: 14px 32px;
+    font-size: 13px;
+}
+
+
+
+}
