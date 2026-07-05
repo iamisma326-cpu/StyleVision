@@ -1,30 +1,30 @@
-/* Reset y Estilos Globales */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: $fuente-textos; background-color: $color-fondo; color: $color-texto; overflow-x: hidden; }
-h1, h2, h3 { font-family: $fuente-titulos; font-weight: 400; letter-spacing: 2px; }
-
-/* Navegación (Estilo Lujo) */
 .encabezado {
     position: fixed;
     top: 0; width: 100%;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 50px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: $spacing-2xl 50px;
     z-index: 1000;
-    transition: background-color 0.4s ease, color 0.4s ease;
+    @include transicion-color(0.4s);
 }
-.encabezado--transparente { background-color: transparent; color: white; }
-.encabezado--blanco { background-color: white; color: black; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+.encabezado--transparente { background-color: transparent; color: $blanco; }
+.encabezado--blanco { background-color: $blanco; color: $negro; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
 
-.encabezado__logo { font-size: 32px; letter-spacing: 5px; text-transform: uppercase; }
+.encabezado__enlaces { justify-self: start; display: flex; gap: $spacing-3xl; align-items: center; }
+.encabezado__logo { justify-self: center; font-size: 32px; letter-spacing: 5px; @include uppercase-tracked; text-decoration: none; color: inherit; }
+.encabezado__iconos { justify-self: end; display: flex; gap: $spacing-3xl; align-items: center; }
 .encabezado__enlaces a, .encabezado__iconos a {
-    color: inherit; text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+    color: inherit; text-decoration: none; font-size: $fuente-pequeña; @include uppercase-tracked; font-weight: 600;
 }
 
-/* Hero con Animación de Carga (Zoom Out) */
+/* === Hero === */
 .seccion-hero-lujo { position: relative; height: 100vh; width: 100%; overflow: hidden; }
 .hero__imagen-contenedor { width: 100%; height: 100%; }
 .hero__imagen { width: 100%; height: 100%; object-fit: cover; }
 .animacion-zoom { animation: zoomOutLujo 3s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+.animacion-zoom { @include reduced-motion { animation: none; } }
+
 @keyframes zoomOutLujo {
     0% { transform: scale(1.15); }
     100% { transform: scale(1); }
@@ -32,88 +32,97 @@ h1, h2, h3 { font-family: $fuente-titulos; font-weight: 400; letter-spacing: 2px
 
 .hero__contenido {
     position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%);
-    text-align: center; color: white;
+    text-align: center; color: $blanco;
 }
-.hero__subtitulo { font-size: 24px; margin-bottom: 30px; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
-.hero__botones { display: flex; gap: 20px; justify-content: center; }
+.hero__subtitulo { font-size: 24px; margin-bottom: $spacing-3xl; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); }
+.hero__botones { display: flex; gap: $spacing-2xl; justify-content: center; }
 
-/* Botones de Lujo */
 .boton-lujo {
-    background-color: white; color: black; padding: 15px 40px; text-decoration: none; font-size: 12px;
-    text-transform: uppercase; letter-spacing: 2px; transition: background-color 0.3s, color 0.3s;
+    background-color: $blanco; color: $negro; padding: $spacing-xl 40px; text-decoration: none;
+    @include boton-base;
+    border: none;
 }
-.boton-lujo:hover { background-color: black; color: white; }
-.boton-lujo--oscuro { background-color: transparent; border: 1px solid white; color: white; }
-.boton-lujo--oscuro:hover { background-color: white; color: black; }
+.boton-lujo:hover { background-color: $negro; color: $blanco; }
+.boton-lujo--oscuro { background-color: transparent; border: 1px solid $blanco; color: $blanco; }
+.boton-lujo--oscuro:hover { background-color: $blanco; color: $negro; }
 
-/* --- NUEVO: Categorías (4 elementos sin espacios) --- */
-.seccion-categorias { 
-    display: grid; 
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 0; /* Cero espacios entre columnas */
+/* === Categorías === */
+.seccion-categorias {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
     width: 100%;
-    background-color: #F6F6F6; /* Color gris muy sutil tipo estudio */
+    background-color: $gris-claro;
+
+    @include mobile { grid-template-columns: repeat(2, 1fr); }
 }
-.categoria { 
-    text-align: center; 
-    padding-bottom: 30px; 
+.categoria {
+    text-align: center;
+    padding-bottom: $spacing-3xl;
     transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     overflow: hidden;
 }
-.categoria img { 
-    width: 100%; 
-    height: 400px; 
-    object-fit: cover; /* Para que todas las imágenes sean exactas */
-    margin-bottom: 20px;
-}
-.categoria__titulo { font-size: 13px; text-transform: uppercase; }
+.categoria img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    margin-bottom: $spacing-2xl;
 
-/* Promociones (Animación Hover/Scroll) */
+    @include mobile { height: 200px; }
+}
+.categoria__titulo { font-size: $fuente-pequeña; @include uppercase-tracked; }
+
 .seccion-promos { display: flex; width: 100%; height: 80vh; }
 .promo { position: relative; width: 50%; height: 100%; overflow: hidden; }
 .promo__imagen { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
 .promo:hover .promo__imagen { transform: scale(0.95); }
-.promo__texto { position: absolute; bottom: 40px; left: 0; width: 100%; text-align: center; color: white; }
-.promo__texto h3 { margin-bottom: 20px; font-size: 28px; }
+.promo__texto { position: absolute; bottom: $spacing-4xl; left: 0; width: 100%; text-align: center; color: $blanco; }
+.promo__texto h3 { margin-bottom: $spacing-2xl; font-size: $fuente-xl; }
 
-/* --- NUEVO: Servicios (3 videos con textos) --- */
-.seccion-servicios { padding: 80px 20px; text-align: center; background-color: white; }
-.servicios__titulo-principal { font-size: 20px; text-transform: uppercase; margin-bottom: 60px; }
-.servicios__grid { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 20px; 
-    max-width: 1200px; 
-    margin: 0 auto; 
+@include mobile {
+    .seccion-promos { flex-direction: column; height: auto; }
+    .promo { width: 100%; height: 50vh; }
+}
+
+/* === Servicios === */
+.seccion-servicios { padding: $spacing-7xl $spacing-2xl; text-align: center; background-color: $blanco; }
+.servicios__titulo-principal { font-size: $spacing-2xl; @include uppercase-tracked; margin-bottom: $spacing-6xl; }
+.servicios__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-2xl;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @include mobile { grid-template-columns: 1fr; }
 }
 .servicio { text-align: center; }
-.servicio__video { width: 100%; height: 400px; object-fit: cover; margin-bottom: 20px; }
-.servicio__titulo { font-size: 15px; text-transform: uppercase; margin-bottom: 15px; }
-.servicio__enlace { color: black; font-size: 14px; text-decoration: underline; text-underline-offset: 5px; }
+.servicio__video { width: 100%; height: 400px; object-fit: cover; margin-bottom: $spacing-2xl; }
+.servicio__titulo { font-size: $fuente-media; @include uppercase-tracked; margin-bottom: $spacing-xl; }
+.servicio__enlace { color: $negro; font-size: $fuente-normal; text-decoration: underline; text-underline-offset: 5px; }
 
-/* Newsletter Interactivo (Blanco a Negro) */
 .seccion-newsletter {
-    padding: 150px 20px; text-align: center;
-    background-color: white; color: black;
-    transition: background-color 0.8s ease, color 0.8s ease;
+    padding: 150px $spacing-2xl; text-align: center;
+    background-color: $blanco; color: $negro;
+    @include transicion-color;
 }
-.seccion-newsletter.fondo-negro { background-color: black; color: white; }
-.newsletter__titulo { font-size: 28px; margin-bottom: 30px; text-transform: uppercase; }
-.newsletter__texto { font-size: 18px; max-width: 800px; margin: 0 auto 50px auto; line-height: 1.6; }
-.boton-suscripcion { color: inherit; text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
+.seccion-newsletter.fondo-negro { background-color: $negro; color: $blanco; }
+.newsletter__titulo { font-size: $fuente-xl; margin-bottom: $spacing-3xl; @include uppercase-tracked; }
+.newsletter__texto { font-size: $fuente-grande; max-width: 800px; margin: 0 auto $spacing-5xl auto; line-height: 1.6; }
+.boton-suscripcion { color: inherit; text-decoration: none; font-size: $fuente-normal; @include uppercase-tracked; font-weight: bold; }
 
-/* --- NUEVO: Footer con Logo Gigante --- */
+/* === Footer === */
 .pie-pagina-lujo {
-    background-color: black;
-    color: white;
+    background-color: $negro;
+    color: $blanco;
     text-align: center;
-    overflow: hidden; /* Evita que el logo gigante rompa el ancho de la página */
-    padding-top: 50px;
+    overflow: hidden;
+    padding-top: $spacing-5xl;
 }
 .pie-pagina__info {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 40px;
+    font-size: $fuente-chica;
+    color: $gris-texto;
+    margin-bottom: $spacing-4xl;
 }
 .pie-pagina__logo-contenedor {
     width: 100%;
@@ -123,42 +132,41 @@ h1, h2, h3 { font-family: $fuente-titulos; font-weight: 400; letter-spacing: 2px
 }
 .pie-pagina__logo-gigante {
     font-family: $fuente-titulos;
-    font-size: 16vw; /* 'vw' hace que el texto se adapte al ancho total de la pantalla */
-    line-height: 0.75; /* Quita el espacio extra arriba y abajo del texto */
-    letter-spacing: -2px; /* Junta un poco las letras como en el diseño de alta costura */
-    color: white;
+    font-size: 16vw;
+    line-height: 0.75;
+    letter-spacing: -2px;
+    color: $blanco;
     margin: 0;
 }
 
-
-/* --- Generador IA (Estilo Lujo) --- */
+/* === Generador IA === */
 .seccion-generador-lujo {
-    padding: 100px 20px;
-    background-color: #F6F6F6;
+    padding: $spacing-8xl $spacing-2xl;
+    background-color: $gris-claro;
     display: flex;
     justify-content: center;
 }
 
 .contenedor-generador-lujo {
-    background-color: white;
+    background-color: $blanco;
     width: 100%;
     max-width: 600px;
-    padding: 50px;
+    padding: $spacing-5xl;
     box-shadow: 0 5px 15px rgba(0,0,0,0.03);
 }
 
 .generador__titulo-lujo {
     font-size: 24px;
-    text-transform: uppercase;
-    margin-bottom: 15px;
+    @include uppercase-tracked;
+    margin-bottom: $spacing-xl;
     text-align: center;
 }
 
 .generador__texto-lujo {
     text-align: center;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 40px;
+    font-size: $fuente-normal;
+    color: $gris-medio;
+    margin-bottom: $spacing-4xl;
     line-height: 1.6;
 }
 
@@ -174,65 +182,67 @@ h1, h2, h3 { font-family: $fuente-titulos; font-weight: 400; letter-spacing: 2px
 }
 
 .etiqueta-lujo {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
+    font-size: $fuente-chica;
+    @include uppercase-tracked;
+    margin-bottom: $spacing-md;
     font-weight: 600;
 }
 
 .campo-entrada-lujo {
-    padding: 12px 0;
+    padding: $spacing-lg 0;
     border: none;
-    border-bottom: 1px solid #CCC;
+    border-bottom: 1px solid $gris-borde;
     font-family: $fuente-textos;
-    font-size: 14px;
+    font-size: $fuente-normal;
     background-color: transparent;
     transition: border-color 0.3s ease;
     border-radius: 0;
 
     &:focus {
         outline: none;
-        border-bottom: 2px solid black;
+        border-bottom: 2px solid $negro;
     }
 }
 
 .campo-archivo-lujo {
-    font-size: 12px;
+    font-size: $fuente-chica;
     padding: 10px 0;
 }
 
 .boton-generar-lujo {
-   margin-top: 20px;
+    margin-top: $spacing-2xl;
     width: 100%;
     text-align: center;
-    background-color: black;
-    color: white;
-    padding: 15px 40px;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border: 1px solid black;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: $negro;
+    color: $blanco;
+    padding: $spacing-xl 40px;
+    @include boton-base;
+    border: 1px solid $negro;
 
     &:hover {
-        background-color: white;
-        color: black;
+        background-color: $blanco;
+        color: $negro;
     }
 }
 
 .resultado-ia-lujo {
-    margin-top: 40px;
+    margin-top: $spacing-4xl;
     text-align: center;
-    padding-top: 30px;
+    padding: $spacing-4xl $spacing-2xl;
     border-top: 1px solid #EEE;
+    background-color: #FAFAFA;
+    border-radius: 8px;
 }
-.oculto { display: none; 
 
-    /* ======================== MEJORAS GENERADOR IA ======================== */
+.resultado-ia-lujo .boton-generar-lujo {
+    margin: 10px 5px;
+    padding: 14px 32px;
+    font-size: 13px;
+}
 
-/* Pantalla de Carga Mejorada */
+.oculto { display: none; }
+
+/* === Loader IA === */
 .carga-ia {
     text-align: center;
     padding: 40px 20px;
@@ -242,10 +252,12 @@ h1, h2, h3 { font-family: $fuente-titulos; font-weight: 400; letter-spacing: 2px
     width: 60px;
     height: 60px;
     border: 4px solid #f0f0f0;
-    border-top: 4px solid #1A1A1A;
+    border-top: 4px solid $gris-oscuro;
     border-radius: 50%;
     animation: spin 1.2s linear infinite;
-    margin: 20px auto;
+    margin: $spacing-2xl auto;
+
+    @include reduced-motion { animation: none; }
 }
 
 @keyframes spin {
@@ -253,23 +265,351 @@ h1, h2, h3 { font-family: $fuente-titulos; font-weight: 400; letter-spacing: 2px
     100% { transform: rotate(360deg); }
 }
 
-/* Mejorar el contenedor de resultado */
-.resultado-ia-lujo {
-    margin-top: 40px;
+.oculto { display: none; }
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: $negro;
+    color: $blanco;
+    padding: $spacing-md 15px;
+    z-index: 9999;
+    transition: top 0.3s ease;
+    &:focus { top: 0; }
+}
+
+.animacion-scroll {
+    opacity: 0;
+    transform: translateY($spacing-2xl);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animacion-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animacion-hover {
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.animacion-hover:hover {
+    transform: translateY(-4px);
+}
+
+/* ======================== PÁGINAS ======================== */
+
+/* === Hero Reducido (Cómo Funciona) === */
+.seccion-hero-reducido {
+    background-color: $negro;
+    color: $blanco;
     text-align: center;
-    padding: 40px 20px;
-    border-top: 1px solid #EEE;
-    background-color: #FAFAFA;
-    border-radius: 8px;
+    padding: 120px $spacing-2xl $spacing-6xl $spacing-2xl;
 }
 
-/* Botones en el resultado */
-.resultado-ia-lujo .boton-generar-lujo {
-    margin: 10px 5px;
-    padding: 14px 32px;
-    font-size: 13px;
+.hero-reducido__titulo {
+    font-family: $fuente-titulos;
+    font-size: 48px;
+    @include uppercase-tracked($spacing-sm);
+    margin-bottom: $spacing-2xl;
 }
 
+.hero-reducido__subtitulo {
+    font-family: $fuente-textos;
+    font-size: $fuente-grande;
+    color: $gris-hover;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
 
+.seccion-pasos {
+    background-color: $gris-claro;
+    padding: $spacing-8xl $spacing-2xl;
+}
 
+.pasos-contenedor {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.pasos-titulo {
+    font-family: $fuente-titulos;
+    font-size: $fuente-xl;
+    @include uppercase-tracked($spacing-sm);
+    text-align: center;
+    margin-bottom: $spacing-7xl;
+}
+
+.paso {
+    display: flex;
+    gap: $spacing-4xl;
+    margin-bottom: $spacing-6xl;
+    position: relative;
+}
+
+.paso-numero {
+    font-family: $fuente-titulos;
+    font-size: 48px;
+    color: $gris-hover;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 60px;
+}
+
+.paso-contenido {
+    flex: 1;
+}
+
+.paso-titulo {
+    font-family: $fuente-textos;
+    font-size: $fuente-grande;
+    @include uppercase-tracked;
+    font-weight: 600;
+    margin-bottom: $spacing-lg;
+}
+
+.paso-texto {
+    font-family: $fuente-textos;
+    font-size: $fuente-media;
+    color: $gris-medio;
+    line-height: 1.6;
+}
+
+.paso:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: $spacing-3xl;
+    top: 60px;
+    bottom: -60px;
+    width: 1px;
+    background-color: #E0E0E0;
+}
+
+.seccion-comparacion {
+    background-color: $blanco;
+    padding: $spacing-8xl $spacing-2xl;
+}
+
+.comparacion-contenedor {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.comparacion-titulo {
+    font-family: $fuente-titulos;
+    font-size: $fuente-xl;
+    @include uppercase-tracked($spacing-sm);
+    text-align: center;
+    margin-bottom: $spacing-6xl;
+}
+
+.comparacion-subtitulo {
+    font-family: $fuente-titulos;
+    font-size: $spacing-2xl;
+    @include uppercase-tracked;
+    margin: $spacing-4xl 0 $spacing-2xl 0;
+    text-align: center;
+    color: $gris-medio;
+}
+
+.comparacion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-4xl;
+}
+
+.comparacion-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.comparacion-item img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.comparacion-etiqueta {
+    position: absolute;
+    bottom: $spacing-2xl;
+    left: $spacing-2xl;
+    background-color: $negro;
+    color: $blanco;
+    padding: 6px 15px;
+    font-family: $fuente-textos;
+    @include uppercase-tracked;
+    font-size: $fuente-chica;
+}
+
+.seccion-cta-pasos {
+    background-color: $gris-oscuro;
+    color: $blanco;
+    text-align: center;
+    padding: $spacing-7xl $spacing-2xl;
+}
+
+.cta-pasos__titulo {
+    font-family: $fuente-titulos;
+    font-size: $fuente-xl;
+    @include uppercase-tracked($spacing-sm);
+    margin-bottom: $spacing-3xl;
+}
+
+.cta-pasos__boton {
+    display: inline-block;
+    background-color: $blanco;
+    color: $negro;
+    padding: $spacing-xl 40px;
+    text-decoration: none;
+    @include boton-base;
+}
+
+.cta-pasos__boton:hover {
+    background-color: $negro;
+    color: $blanco;
+    border: 1px solid $blanco;
+}
+
+.seccion-cta-ia {
+    background-color: $blanco;
+    color: $negro;
+    text-align: center;
+    padding: $spacing-7xl $spacing-2xl;
+    @include transicion-color;
+}
+
+.seccion-cta-ia.fondo-negro {
+    background-color: $gris-oscuro;
+    color: $blanco;
+}
+
+.cta-ia__titulo {
+    font-family: $fuente-titulos;
+    font-size: $fuente-xl;
+    @include uppercase-tracked($spacing-sm);
+    margin-bottom: $spacing-xl;
+}
+
+.cta-ia__texto {
+    font-family: $fuente-textos;
+    font-size: 16px;
+    color: $gris-hover;
+    margin-bottom: $spacing-3xl;
+}
+
+.seccion-contacto { padding: $spacing-8xl $spacing-2xl; background-color: $blanco; }
+
+.contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-6xl;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    @include mobile { grid-template-columns: 1fr; }
+}
+
+.contacto-titulo {
+    font-family: $fuente-titulos;
+    font-size: $fuente-grande;
+    @include uppercase-tracked;
+    margin-bottom: $spacing-3xl;
+}
+
+.contacto-info__item { margin-bottom: $spacing-3xl; }
+
+.contacto-info__etiqueta {
+    font-size: $fuente-chica;
+    @include uppercase-tracked;
+    color: $gris-texto;
+    margin-bottom: 5px;
+}
+
+.contacto-info__valor {
+    font-size: $fuente-media;
+    color: $gris-oscuro;
+    line-height: 1.6;
+}
+
+.seccion-explorar { padding: $spacing-6xl $spacing-2xl; background-color: $blanco; }
+
+.explorar-contenedor { max-width: 1000px; margin: 0 auto; }
+
+.filtros {
+    display: flex; gap: $spacing-xl; justify-content: center; margin-bottom: $spacing-5xl; flex-wrap: wrap;
+}
+
+.filtro-btn {
+    background-color: transparent; border: 1px solid $gris-borde; color: $gris-medio;
+    padding: 10px 24px; font-size: $fuente-pequeña; @include uppercase-tracked;
+    cursor: pointer; transition: all 0.3s ease; font-family: $fuente-textos;
+    &:hover { border-color: $negro; color: $negro; }
+}
+
+.filtro-activo { background-color: $negro; color: $blanco; border-color: $negro; }
+
+.galeria-outfits {
+    display: grid; grid-template-columns: 1fr 1fr; gap: $spacing-2xl;
+    @include mobile { grid-template-columns: 1fr; }
+}
+
+.tarjeta-outfit {
+    position: relative; overflow: hidden; cursor: pointer;
+    img { width: 100%; height: 400px; object-fit: cover; transition: transform 0.5s ease; }
+    &:hover img { transform: scale(1.05); }
+}
+
+.tarjeta-outfit__overlay {
+    position: absolute; bottom: 0; left: 0; width: 100%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    padding: $spacing-3xl $spacing-2xl $spacing-2xl $spacing-2xl; color: $blanco;
+    transform: translateY(20px); opacity: 0; transition: all 0.4s ease;
+}
+
+.tarjeta-outfit:hover .tarjeta-outfit__overlay { transform: translateY(0); opacity: 1; }
+
+.tarjeta-outfit__nombre {
+    display: block; font-size: $fuente-grande; font-weight: 600; margin-bottom: 5px;
+    font-family: $fuente-titulos; letter-spacing: $spacing-xs;
+}
+
+.tarjeta-outfit__estilo {
+    font-size: $fuente-chica; @include uppercase-tracked; color: $gris-borde;
+}
+
+.seccion-categorias-exp { padding: $spacing-7xl $spacing-2xl; background-color: $gris-claro; }
+
+.categorias-exp-contenedor { max-width: 1000px; margin: 0 auto; }
+
+.categorias-exp-titulo {
+    font-family: $fuente-titulos; font-size: $fuente-xl; @include uppercase-tracked($spacing-sm);
+    text-align: center; margin-bottom: $spacing-5xl;
+}
+
+.categorias-exp-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: $spacing-2xl;
+    @include mobile { grid-template-columns: repeat(2, 1fr); }
+}
+
+.categoria-exp {
+    position: relative; overflow: hidden; text-decoration: none; color: $blanco;
+    img { width: 100%; height: 250px; object-fit: cover; transition: transform 0.5s ease; }
+    &:hover img { transform: scale(1.05); }
+}
+
+.categoria-exp__nombre {
+    position: absolute; bottom: $spacing-xl; left: $spacing-xl;
+    font-size: $fuente-normal; @include uppercase-tracked; font-weight: 600;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+@include mobile {
+    .hero-reducido__titulo { font-size: 32px; }
+    .paso { flex-direction: column; gap: 15px; }
+    .paso-numero { width: auto; }
+    .paso:not(:last-child)::after { display: none; }
+    .comparacion-grid { grid-template-columns: 1fr; }
+    .comparacion-item img { height: 250px; }
 }

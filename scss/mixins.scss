@@ -1,18 +1,40 @@
-/* Mixin para botones */
-@mixin boton-estilo($color-fondo-boton, $color-texto-boton) {
-    display: inline-block;
-    background-color: $color-fondo-boton;
-    color: $color-texto-boton;
-    padding: 15px 30px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    border: none;
-    cursor: pointer;
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
 
-    &:hover {
-        background-color: darken($color-fondo-boton, 10%);
-        transform: translateY(-2px);
-    }
+@mixin tablet {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1025px) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+@mixin uppercase-tracked($spacing: 1px) {
+    text-transform: uppercase;
+    letter-spacing: $spacing;
+}
+
+@mixin boton-base {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: $fuente-chica;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@mixin transicion-color($duracion: 0.8s) {
+    transition: background-color $duracion ease, color $duracion ease;
 }

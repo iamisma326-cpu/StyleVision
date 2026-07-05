@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Genera tu outfit ideal gratis con Inteligencia Artificial. StyleVision diseña propuestas exclusivas para ti.">
+    <title>Herramienta IA | StyleVision</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+    <a href="#generador" class="skip-link">Saltar al contenido</a>
+
+    <header class="encabezado encabezado--blanco">
+        <nav class="encabezado__enlaces">
+            <a href="contacto.html">Contacto</a>
+            <a href="como-funciona.html">Cómo Funciona</a>
+        </nav>
+        <a href="index.html" class="encabezado__logo">StyleVision</a>
+    </header>
+
+    <main id="contenido">
+        <section class="seccion-hero-reducido">
+            <h2 class="hero-reducido__titulo">Genera Tu Outfit</h2>
+            <p class="hero-reducido__subtitulo">Usa nuestra Inteligencia Artificial gratuita para crear looks únicos en
+                segundos</p>
+        </section>
+
+        <section id="generador" class="seccion-generador-lujo">
+            <div class="contenedor-generador-lujo">
+                <h2 class="generador__titulo-lujo">Crea tu Outfit Ideal</h2>
+                <p class="generador__texto-lujo">Selecciona tus preferencias y deja que nuestra Inteligencia Artificial
+                    diseñe tu propuesta exclusiva.</p>
+
+                <form id="formulario-ia" class="formulario-ia-lujo">
+                    <div class="grupo-formulario-lujo">
+                        <label for="genero" class="etiqueta-lujo">Género</label>
+                        <select id="genero" class="campo-entrada-lujo" required>
+                            <option value="">Seleccione...</option>
+                            <option value="mujer">Mujer</option>
+                            <option value="hombre">Hombre</option>
+                            <option value="unisex">Unisex</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-formulario-lujo">
+                        <label for="evento" class="etiqueta-lujo">Tipo de evento</label>
+                        <select id="evento" class="campo-entrada-lujo" required>
+                            <option value="">Seleccione...</option>
+                            <option value="casual">Salida Casual</option>
+                            <option value="formal">Fiesta Formal / Gala</option>
+                            <option value="trabajo">Business / Trabajo</option>
+                            <option value="noche">Noche Elegante</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-formulario-lujo">
+                        <label for="estilo" class="etiqueta-lujo">Estilo deseado</label>
+                        <select id="estilo" class="campo-entrada-lujo" required>
+                            <option value="">Seleccione...</option>
+                            <option value="minimalista">Minimalista</option>
+                            <option value="urbano">Urbano / Streetwear</option>
+                            <option value="clasico">Clásico / Alta Costura</option>
+                            <option value="vanguardista">Vanguardista</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-formulario-lujo">
+                        <label for="temporada" class="etiqueta-lujo">Temporada / Clima</label>
+                        <select id="temporada" class="campo-entrada-lujo" required>
+                            <option value="">Seleccione...</option>
+                            <option value="verano">Verano / Caluroso</option>
+                            <option value="invierno">Invierno / Frío</option>
+                            <option value="primavera">Primavera</option>
+                            <option value="otono">Otoño</option>
+                            <option value="interior">Interior / Formal</option>
+                        </select>
+                    </div>
+
+                    <div class="grupo-formulario-lujo">
+                        <label for="color" class="etiqueta-lujo">Colores favoritos</label>
+                        <input type="text" id="color" class="campo-entrada-lujo"
+                            placeholder="Ej. Tonos neutros, negro y dorado..." required>
+                    </div>
+
+                    <button type="submit" class="boton-generar-lujo">Generar Propuesta con IA</button>
+                </form>
+
+                <div id="resultado-ia" class="resultado-ia-lujo oculto"></div>
+            </div>
+        </section>
+
+        <section class="seccion-cta-pasos">
+            <h2 class="cta-pasos__titulo">¿Quieres saber cómo funciona?</h2>
+            <a href="como-funciona.html" class="cta-pasos__boton">Descubre el Proceso</a>
+        </section>
+    </main>
+
+    <footer class="pie-pagina-lujo">
+        <div class="pie-pagina__info">
+            <p>&copy; 2026 StyleVision - Todos los derechos reservados.</p>
+        </div>
+        <div class="pie-pagina__logo-contenedor">
+            <p class="pie-pagina__logo-gigante" aria-hidden="true">STYLEVISION</p>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+
+</html>

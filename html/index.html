@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StyleVision - Generador gratuito de outfits con Inteligencia Artificial. Diseña tu look ideal gratis con nuestra IA de moda.">
     <title>StyleVision | Generador de Outfits con IA</title>
     <link rel="stylesheet" href="../css/estilos.css">
 </head>
 <body>
+    <a href="#generador" class="skip-link">Saltar al contenido principal</a>
     
    <header class="encabezado encabezado--transparente" id="nav-principal">
         <nav class="encabezado__enlaces">
-            <a href="#contacto">Contacto</a>
+            <a href="contacto.html">Contacto</a>
+            <a href="como-funciona.html">Cómo Funciona</a>
+            <a href="explorar.html">Explorar</a>
         </nav>
-        <h1 class="encabezado__logo">StyleVision</h1>
+        <a href="index.html" class="encabezado__logo">StyleVision</a>
         <nav class="encabezado__iconos">
-            <a href="#generador">Generar IA</a>
+            <a href="herramienta-ia.html">Generar IA</a>
         </nav>
     </header>
 
@@ -27,13 +31,13 @@
             <div class="hero__contenido">
                 <h2 class="hero__subtitulo">Nueva Colección Exclusiva</h2>
                 <div class="hero__botones">
-                    <a href="#mujer" class="boton-lujo">Para Ella</a>
-                    <a href="#hombre" class="boton-lujo">Para Él</a>
+                    <a href="#generador" class="boton-lujo">Crear Mi Outfit</a>
+                    <a href="#categorias" class="boton-lujo boton-lujo--oscuro">Explorar Colecciones</a>
                 </div>
             </div>
         </section>
 
-        <section class="seccion-categorias">
+        <section id="categorias" class="seccion-categorias">
             <article class="categoria animacion-scroll">
                 <img src="../assets/img/cat-bolso.jpg" alt="Bolso">
                 <h3 class="categoria__titulo">Bolsos de Mano de Mujer</h3>
@@ -47,7 +51,7 @@
                 <h3 class="categoria__titulo">Zapatillas para Hombre</h3>
             </article>
             <article class="categoria animacion-scroll">
-                <img src="../assets/img/cat-mochila.jpg" alt="Bolsos Hombre">
+                <img src="../assets/img/cat-mochila.jpg" alt="Mochilas para Hombre">
                 <h3 class="categoria__titulo">Bolsos para Hombre</h3>
             </article>
         </section>
@@ -76,105 +80,38 @@
                 <div class="servicio">
                     <video src="../assets/img/servicio-1.mp4" autoplay loop muted playsinline class="servicio__video"></video>
                     <h3 class="servicio__titulo">Generación de Outfits por IA</h3>
-                    <a href="#generador" class="servicio__enlace">Descubra cómo funciona</a>
+                    <a href="como-funciona.html" class="servicio__enlace">Descubra cómo funciona</a>
                 </div>
 
                 <div class="servicio">
                     <video src="../assets/img/servicio-2.mp4" autoplay loop muted playsinline class="servicio__video"></video>
                     <h3 class="servicio__titulo">Personalización de Estilos</h3>
-                    <a href="#estilos" class="servicio__enlace">Explorar opciones</a>
+                    <a href="explorar.html" class="servicio__enlace">Explorar opciones</a>
                 </div>
 
                 <div class="servicio">
                     <video src="../assets/img/servicio-3.mp4" autoplay loop muted playsinline class="servicio__video"></video>
                     <h3 class="servicio__titulo">Asesoría Virtual</h3>
-                    <a href="#asesoria" class="servicio__enlace">Concertar una cita</a>
+                    <a href="contacto.html" class="servicio__enlace">Concertar una cita</a>
                 </div>
 
             </div>
         </section>
 
-        <section id="generador" class="seccion-generador-lujo">
-            <div class="contenedor-generador-lujo">
-                <h2 class="generador__titulo-lujo">Crea tu Outfit Ideal</h2>
-                <p class="generador__texto-lujo">Selecciona tus preferencias y deja que nuestra Inteligencia Artificial diseñe tu propuesta exclusiva.</p>
-
-                              <form id="formulario-ia" class="formulario-ia-lujo">
-                    <!-- Género -->
-                    <div class="grupo-formulario-lujo">
-                        <label for="genero" class="etiqueta-lujo">Género</label>
-                        <select id="genero" class="campo-entrada-lujo" required>
-                            <option value="">Seleccione...</option>
-                            <option value="mujer">Mujer</option>
-                            <option value="hombre">Hombre</option>
-                            <option value="unisex">Unisex</option>
-                        </select>
-                    </div>
-
-                    <!-- Tipo de evento -->
-                    <div class="grupo-formulario-lujo">
-                        <label for="evento" class="etiqueta-lujo">Tipo de evento</label>
-                        <select id="evento" class="campo-entrada-lujo" required>
-                            <option value="">Seleccione...</option>
-                            <option value="casual">Salida Casual</option>
-                            <option value="formal">Fiesta Formal / Gala</option>
-                            <option value="trabajo">Business / Trabajo</option>
-                            <option value="noche">Noche Elegante</option>
-                        </select>
-                    </div>
-
-                    <!-- Estilo -->
-                    <div class="grupo-formulario-lujo">
-                        <label for="estilo" class="etiqueta-lujo">Estilo deseado</label>
-                        <select id="estilo" class="campo-entrada-lujo" required>
-                            <option value="">Seleccione...</option>
-                            <option value="minimalista">Minimalista</option>
-                            <option value="urbano">Urbano / Streetwear</option>
-                            <option value="clasico">Clásico / Alta Costura</option>
-                            <option value="vanguardista">Vanguardista</option>
-                        </select>
-                    </div>
-
-                    <!-- Temporada -->
-                    <div class="grupo-formulario-lujo">
-                        <label for="temporada" class="etiqueta-lujo">Temporada / Clima</label>
-                        <select id="temporada" class="campo-entrada-lujo" required>
-                            <option value="">Seleccione...</option>
-                            <option value="verano">Verano / Caluroso</option>
-                            <option value="invierno">Invierno / Frío</option>
-                            <option value="primavera">Primavera</option>
-                            <option value="otono">Otoño</option>
-                            <option value="interior">Interior / Formal</option>
-                        </select>
-                    </div>
-
-                    <!-- Colores -->
-                    <div class="grupo-formulario-lujo">
-                        <label for="color" class="etiqueta-lujo">Colores favoritos</label>
-                        <input type="text" id="color" class="campo-entrada-lujo" placeholder="Ej. Tonos neutros, negro y dorado..." required>
-                    </div>
-
-                    <button type="submit" class="boton-generar-lujo">Generar Propuesta con IA</button>
-                </form>
-
-                <div id="resultado-ia" class="resultado-ia-lujo oculto"></div>
-            </div>
-        </section>
-
-        <section class="seccion-newsletter" id="newsletter">
-            <h2 class="newsletter__titulo">Regístrese para recibir novedades de StyleVision</h2>
-            <p class="newsletter__texto">Reciba actualizaciones exclusivas y descubra su estilo con nuestra Inteligencia Artificial.</p>
-            <a href="#generador" class="boton-suscripcion">+ Suscribirse</a>
+        <section id="newsletter" class="seccion-cta-ia">
+            <h2 class="cta-ia__titulo">Prueba Nuestra Herramienta IA</h2>
+            <p class="cta-ia__texto">Genera tu outfit ideal gratis con Inteligencia Artificial</p>
+            <a href="herramienta-ia.html" class="boton-lujo">Generar Outfit Gratis</a>
         </section>
 
     </main>
 
     <footer class="pie-pagina-lujo">
         <div class="pie-pagina__info">
-            <p>&copy; 2026 Proyecto StyleVision - Todos los derechos reservados.</p>
+            <p>&copy; 2026 StyleVision - Todos los derechos reservados.</p>
         </div>
         <div class="pie-pagina__logo-contenedor">
-            <h2 class="pie-pagina__logo-gigante">STYLEVISION</h2>
+            <p class="pie-pagina__logo-gigante" aria-hidden="true">STYLEVISION</p>
         </div>
     </footer>
 
