@@ -1,5 +1,9 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/html/index.html" }
+    { "source": "/", "destination": "/html/index.html" },
+    { "source": "/herramienta-ia.html", "destination": "/html/herramienta-ia.html" },
+    { "source": "/contacto.html", "destination": "/html/contacto.html" },
+    { "source": "/como-funciona.html", "destination": "/html/como-funciona.html" },
+    { "source": "/explorar.html", "destination": "/html/explorar.html" }
   ]
 }
